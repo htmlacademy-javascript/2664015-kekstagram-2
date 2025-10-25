@@ -1,12 +1,3 @@
-import { getRandomInteger, getUniqueId } from './util.js';
-
-const PHOTO_COUNT = 25;
-const MIN_COMMENTS = 0;
-const MAX_COMMENTS = 30;
-const AVATAR_COUNT = 6;
-const MIN_LIKES = 15;
-const MAX_LIKES = 200;
-
 const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -39,28 +30,4 @@ const NAMES = [
   'Ольга'
 ];
 
-const getCommentId = getUniqueId(1, PHOTO_COUNT * MAX_COMMENTS * 3);
-
-const getComments = (commentsCount = getRandomInteger(MIN_COMMENTS, MAX_COMMENTS)) =>
-  Array.from({ length: commentsCount }, () => (
-    { id: getCommentId(),
-      avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
-      message: COMMENTS[getRandomInteger(0, COMMENTS.length - 1)],
-      name: NAMES[getRandomInteger(0, NAMES.length - 1)],
-    }
-  ));
-
-
-const getPhotoCards = (photoCount) =>
-  Array.from({ length: photoCount }, (value, i) => (
-    {
-      id: i + 1,
-      url: `photos/${i + 1}.jpg`,
-      description: 'Замечательное фото',
-      likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-      comments: getComments()
-    }
-  ));
-
-console.log(getPhotoCards(PHOTO_COUNT));
-
+export { COMMENTS, NAMES };
