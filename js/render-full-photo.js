@@ -23,11 +23,11 @@ const showFullPhoto = () => {
   document.addEventListener('keydown', onCloseButtonKeydownEsc);
 };
 
-const hideFullPhoto = () => {
+function hideFullPhoto () {
   fullPhotoElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onCloseButtonKeydownEsc);
-};
+}
 
 const changeFullPhoto = (currentPhotoData) => {
   fullImageElement.src = currentPhotoData.url;
