@@ -63,9 +63,9 @@ const renderCurrentComments = () => {
   }
 };
 
-const onCommentsLoaderClick = () => {
+function onCommentsLoaderClick () {
   renderCurrentComments();
-};
+}
 
 const renderComments = (commentsData) => {
   comments = commentsData;

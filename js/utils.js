@@ -1,5 +1,25 @@
 const getRandomInteger = (min, max) => Math.floor(Math.random() * max - min + 1) + min;
 
+//let toggle = false;
+//
+//const toggleIsInputInFocus = () => {
+//  toggle = true;
+//};
+//
+//const toggleIsInputOutFocus = () => {
+//  toggle = false;
+//};
+//
+//const initListenerFocus = (element, init = true) => {
+//  if (init) {
+//    element.addEventListener('focusin', toggleIsInputInFocus);
+//    element.addEventListener('focusout', toggleIsInputOutFocus);
+//  } else {
+//    element.removeEventListener('focusin', toggleIsInputInFocus);
+//    element.removeEventListener('focusout', toggleIsInputOutFocus);
+//  }
+//};
+
 const getUniqueId = (min, max) => {
   const usedIds = [];
 
