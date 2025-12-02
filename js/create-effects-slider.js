@@ -3,7 +3,7 @@ const sliderInputElement = sliderContainerElement.querySelector('.effect-level__
 const sliderElement = sliderContainerElement.querySelector('.effect-level__slider');
 const photoElement = document.querySelector('.img-upload__preview img');
 
-const effects = [
+const Effects = [
   {
     effect: 'effect-none',
     filter: 'none',
@@ -84,10 +84,10 @@ const showSlider = () => {
 };
 
 const updateSlider = (currentEffect) => {
-  if (currentEffect === effects[0].effect) {
+  if (currentEffect === Effects[0].effect) {
     hideSlider();
   } else {
-    currentEffectData = effects.find((element) => element.effect === currentEffect);
+    currentEffectData = Effects.find((element) => element.effect === currentEffect);
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: currentEffectData.min,

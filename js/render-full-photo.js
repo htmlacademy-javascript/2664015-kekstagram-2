@@ -48,7 +48,7 @@ const onPhotosClick = (evt, photosData) => {
 };
 
 const initListenerFullPhoto = (photosData) => {
-  photosElement.addEventListener('click', (evt) => onPhotosClick (evt, photosData));
+  photosElement.addEventListener('click', (evt) => onPhotosClick(evt, photosData));
 };
 
 export { initListenerFullPhoto };

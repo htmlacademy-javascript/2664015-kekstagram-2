@@ -13,7 +13,7 @@ const effectsElement = document.querySelector('.effects__list');
 
 let scaleValue = SCALE_MAX;
 
-const scalePhoto = (evt) => {
+const onScalePhoto = (evt) => {
   if (evt.target.closest(SCALE_SMALLER_SELECTOR)) {
     scaleValue = scaleValue < SCALE_MIN * 2 ? scaleValue : scaleValue - SCALE_STEP;
   } else if (evt.target.closest(SCALE_BIGGER_SELECTOR)) {
@@ -24,23 +24,23 @@ const scalePhoto = (evt) => {
   photoElement.style.transform = `scale(${scaleValue})`;
 };
 
-const changeEffect = (evt) => {
+const onChangeEffect = (evt) => {
   if (evt.target.closest('.effects__radio')){
     updateSlider(evt.target.id);
   }
 };
 
 const addEditPhotoListener = () => {
-  photoScaleElement.addEventListener('click', scalePhoto);
-  effectsElement.addEventListener('click', changeEffect);
+  photoScaleElement.addEventListener('click', onScalePhoto);
+  effectsElement.addEventListener('click', onChangeEffect);
   createSlider();
 };
 
 const removeEditPhotoListener = () => {
   scaleValue = SCALE_MAX;
   scaleValueElement.setAttribute('value', `${scaleValue * 100}%`);
-  photoScaleElement.removeEventListener('click', scalePhoto);
-  effectsElement.removeEventListener('click', changeEffect);
+  photoScaleElement.removeEventListener('click', onScalePhoto);
+  effectsElement.removeEventListener('click', onChangeEffect);
   removeSlider();
 };
 
