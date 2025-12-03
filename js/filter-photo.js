@@ -1,6 +1,6 @@
 import { getUniqueId } from './utils.js';
 import { renderMiniPhotos } from './render-mini-photos.js';
-import { photosArray } from './api.js';
+import { photosList } from './api.js';
 import { debounce } from './utils.js';
 
 const FILTER_TIMEOUT = 500;
@@ -18,18 +18,18 @@ let currentFilter = Filter.DEFAULT;
 
 const randomizePhotos = (photos) => {
   const getRandomId = getUniqueId(0, photos.length - 1);
-  const ids = [];
+  const identifiers = [];
   let i = 0;
 
   while (i < RANDOM_PHOTOS_LENGTH) {
-    ids.push(getRandomId());
+    identifiers.push(getRandomId());
     i++;
   }
 
-  return ids;
+  return identifiers;
 };
 
-const sortingPhotos = (photos) => {
+const sortPhotos = (photos) => {
   const sortedPhotos = photos.toSorted((a, b) => b.comments.length - a.comments.length);
   return sortedPhotos;
 };
@@ -42,17 +42,17 @@ const getPhotos = (photos) => {
     const newPhotos = photos.filter((photo) => photosIds.includes(photo.id));
     return newPhotos;
   } else if (currentFilter === Filter.DISCUSSED) {
-    return sortingPhotos(photos);
+    return sortPhotos(photos);
   }
 };
 
 const applyFilter = () => {
-  renderMiniPhotos(getPhotos(photosArray));
+  renderMiniPhotos(getPhotos(photosList));
 };
 
 const debouncedApplyFilter = debounce(applyFilter, FILTER_TIMEOUT);
 
-const onButtonClick = (evt) => {
+const handleButtonClick = (evt) => {
   const button = evt.target.closest('.img-filters__button');
   if (button){
     currentButton.classList.remove('img-filters__button--active');
@@ -65,10 +65,10 @@ const onButtonClick = (evt) => {
 
 const showFilters = (isNeedShow) => {
   if (isNeedShow) {
-    buttonsElement.addEventListener('click', onButtonClick);
+    buttonsElement.addEventListener('click', handleButtonClick);
     filtersElement.classList.remove('img-filters--inactive');
   } else {
-    buttonsElement.removeEventListener('click', onButtonClick);
+    buttonsElement.removeEventListener('click', handleButtonClick);
     filtersElement.classList.add('img-filters--inactive');
   }
 };

@@ -1,12 +1,12 @@
 import { loadData } from './api.js';
 import { renderMiniPhotos } from './render-mini-photos.js';
-import { initListenerFullPhoto } from './render-full-photo.js';
-import { initListenerDownloadPhoto } from './show-photo-editor.js';
+import { addListenerFullPhoto } from './render-full-photo.js';
+import { addListenerDownloadPhoto } from './show-photo-editor.js';
 
-initListenerDownloadPhoto();
+addListenerDownloadPhoto();
 const renderPage = (data) => {
   renderMiniPhotos(data);
-  initListenerFullPhoto(data);
+  addListenerFullPhoto(data);
 };
 
 loadData(renderPage);

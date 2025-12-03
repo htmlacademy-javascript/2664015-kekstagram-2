@@ -2,12 +2,12 @@ const MIN_HASHTAG_LENGTH = 2;
 const MAX_HASHTAG_LENGTH = 20;
 const MAX_HASHTAGS_COUNT = 5;
 const MAX_COMMENT_LENGTH = 140;
+const START_HASH_REGEXP = /^#/;
+const HASHTAG_REGEXP = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const imageUploadFormElement = document.querySelector('.img-upload__form');
 const hashtagElement = imageUploadFormElement.querySelector('.text__hashtags');
 const commentElement = imageUploadFormElement.querySelector('.text__description');
-const startHashRegExp = /^#/;
-const hashtagRegExp = /^#[a-zа-яё0-9]{1,19}$/i;
 
 let pristine;
 let hashtags = [];
@@ -19,11 +19,11 @@ const validateCommentLength = (value) => value.length <= MAX_COMMENT_LENGTH;
 const isStartsWithHash = () => {
   hashtags = getHashtags(hashtagElement.value);
   hashtags = hashtags.map((hashtag) => hashtag.toLowerCase());
-  const isFirstHash = hashtags.every((hashtag) => startHashRegExp.test(hashtag));
+  const isFirstHash = hashtags.every((hashtag) => START_HASH_REGEXP.test(hashtag));
   return isFirstHash;
 };
 
-const isValidHashtagFormat = () => hashtags.every((hashtag) => hashtagRegExp.test(hashtag));
+const isValidHashtagFormat = () => hashtags.every((hashtag) => HASHTAG_REGEXP.test(hashtag));
 
 const isValidHashtagLength = () => hashtags.every((hashtag) => hashtag.length >= MIN_HASHTAG_LENGTH && hashtag.length <= MAX_HASHTAG_LENGTH);
 
@@ -36,7 +36,7 @@ const isValidHashtagsCount = () => hashtags.length <= MAX_HASHTAGS_COUNT;
 
 const isValidForm = () => pristine.validate();
 
-const initValidation = () => {
+const addValidation = () => {
   commentElement.removeAttribute('maxlength');
   pristine = new Pristine(imageUploadFormElement, {
     classTo: 'img-upload__field-wrapper',
@@ -56,4 +56,4 @@ const removeValidation = () => {
   pristine.destroy();
 };
 
-export { initValidation, removeValidation, isValidForm };
+export { addValidation, removeValidation, isValidForm };
