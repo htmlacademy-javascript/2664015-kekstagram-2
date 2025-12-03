@@ -9,17 +9,17 @@ function debounce (callback, timeoutDelay) {
 }
 
 const getUniqueId = (min, max) => {
-  const usedIds = [];
+  const identifiers = [];
 
   return function () {
     let currentId = getRandomInteger(min, max);
-    if (max - min + 1 <= usedIds.length) {
+    if (max - min + 1 <= identifiers.length) {
       throw new Error(`Перебраны все числа из диапазона от ${min} до ${max}`);
     }
-    while (usedIds.includes(currentId)) {
+    while (identifiers.includes(currentId)) {
       currentId = getRandomInteger(min, max);
     }
-    usedIds.push(currentId);
+    identifiers.push(currentId);
     return currentId;
   };
 };

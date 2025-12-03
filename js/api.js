@@ -18,7 +18,7 @@ const Credentials = {
   SAME_ORIGIN: 'same-origin',
 };
 
-let photosArray = [];
+let photosList = [];
 
 const loadData = (renderData) => {
   fetch(`${BASE_URL}${Route.GET_DATA}`)
@@ -30,7 +30,7 @@ const loadData = (renderData) => {
       addErrorMessage();
     })
     .then((data) => {
-      photosArray = data;
+      photosList = data;
       return getPhotos(data);
     })
     .then ((photos) => {
@@ -65,4 +65,4 @@ const submitFormData = (formData) => {
     });
 };
 
-export { loadData, submitFormData, photosArray };
+export { loadData, submitFormData, photosList };

@@ -29,12 +29,12 @@ const createCommentElement = (commentData) => {
 
 const showCommentsLoaderElement = () => {
   commentsLoaderElement.classList.remove('hidden');
-  commentsLoaderElement.addEventListener('click', onCommentsLoaderClick);
+  commentsLoaderElement.addEventListener('click', handleCommentsLoaderClick);
 };
 
 const hideCommentsLoaderElement = () => {
   commentsLoaderElement.classList.add('hidden');
-  commentsLoaderElement.removeEventListener('click', onCommentsLoaderClick);
+  commentsLoaderElement.removeEventListener('click', handleCommentsLoaderClick);
 };
 
 const createCommentsFragment = (currentComments) => {
@@ -63,7 +63,7 @@ const renderCurrentComments = () => {
   }
 };
 
-function onCommentsLoaderClick () {
+function handleCommentsLoaderClick () {
   renderCurrentComments();
 }
 

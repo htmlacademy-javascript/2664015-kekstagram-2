@@ -7,26 +7,26 @@ const likesCountElement = fullPhotoElement.querySelector('.likes-count');
 const closeFullPhotoElement = fullPhotoElement.querySelector('.big-picture__cancel');
 const photoDescriptionElement = fullPhotoElement.querySelector('.social__caption');
 
-const onCloseButtonKeydownEsc = (evt) => {
+const handleCloseButtonKeydownEsc = (evt) => {
   if (evt.keyCode === 27) {
     evt.preventDefault();
     hidePopup();
   }
 };
 
-const onCloseButtonClick = () => hidePopup();
+const handleCloseButtonClick = () => hidePopup();
 
 const showPopup = () => {
   fullPhotoElement.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  closeFullPhotoElement.addEventListener('click', onCloseButtonClick, {once: true});
-  document.addEventListener('keydown', onCloseButtonKeydownEsc);
+  closeFullPhotoElement.addEventListener('click', handleCloseButtonClick, {once: true});
+  document.addEventListener('keydown', handleCloseButtonKeydownEsc);
 };
 
 function hidePopup () {
   fullPhotoElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onCloseButtonKeydownEsc);
+  document.removeEventListener('keydown', handleCloseButtonKeydownEsc);
 }
 
 const changeFullPhoto = (currentPhotoData) => {
@@ -36,7 +36,7 @@ const changeFullPhoto = (currentPhotoData) => {
   likesCountElement.textContent = currentPhotoData.likes;
 };
 
-const onPhotosClick = (evt, photosData) => {
+const handlePhotosClick = (evt, photosData) => {
   if (evt.target.closest('.picture')) {
     evt.preventDefault();
     const photoId = evt.target.closest('.picture').dataset.photoId;
@@ -47,9 +47,9 @@ const onPhotosClick = (evt, photosData) => {
   }
 };
 
-const initListenerFullPhoto = (photosData) => {
-  photosElement.addEventListener('click', (evt) => onPhotosClick(evt, photosData));
+const addListenerFullPhoto = (photosData) => {
+  photosElement.addEventListener('click', (evt) => handlePhotosClick(evt, photosData));
 };
 
-export { initListenerFullPhoto };
+export { addListenerFullPhoto };
 

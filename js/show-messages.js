@@ -14,14 +14,14 @@ const addErrorMessage = () => {
   }, TIMEOUT);
 };
 
-const onCloseButtonKeydownEsc = (evt) => {
+const handleCloseButtonKeydownEsc = (evt) => {
   if (evt.keyCode === 27) {
     evt.stopImmediatePropagation();
     hideMessage();
   }
 };
 
-const onCloseButtonClick = (evt) => {
+const handleCloseButtonClick = (evt) => {
   if (evt.target.closest(`.${messageType}__button`)) {
     hideMessage();
   }
@@ -33,16 +33,16 @@ const onCloseButtonClick = (evt) => {
 function hideMessage () {
   const successElement = bodyElement.querySelector(`.${messageType}`);
   successElement.remove();
-  document.removeEventListener('click', onCloseButtonClick);
-  document.removeEventListener('keydown', onCloseButtonKeydownEsc);
+  document.removeEventListener('click', handleCloseButtonClick);
+  document.removeEventListener('keydown', handleCloseButtonKeydownEsc, true);
 }
 
 const showMessage = (isSuccess) => {
   messageType = isSuccess ? 'success' : 'error';
   const cloneMessageFragment = document.querySelector(`#${messageType}`).content.cloneNode(true);
   bodyElement.append(cloneMessageFragment);
-  document.addEventListener('click', onCloseButtonClick);
-  document.addEventListener('keydown', onCloseButtonKeydownEsc, true);
+  document.addEventListener('click', handleCloseButtonClick);
+  document.addEventListener('keydown', handleCloseButtonKeydownEsc, true);
 };
 
 export { showMessage, addErrorMessage };
